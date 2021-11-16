@@ -1,14 +1,21 @@
 import React from "react";
-import './menu-item.styles.scss'
+import './menu-item.styles.scss';
+import { useNavigate } from 'react-router-dom';
 
-const Menuitem = ({title, imageURL, size}) => (
-    <div className={`${size} menu-item`} >
-        <div className='background-image' style={{backgroundImage:`url(${imageURL})`}} />
-        <div className='content'>
-            <h1 className='title'>{title}</h1>
-            <span className='subtitle'>Shop Now</span>
+const Menuitem = ({ title, imageURL, size, linkURL}) => {
+    const navigate = useNavigate();
+    const handleClick = () =>{
+        navigate(`${linkURL}`);
+    }
+    return (
+        <div className={`${size} menu-item`} onClick={handleClick} >
+            <div className='background-image' style={{ backgroundImage: `url(${imageURL})` }} />
+            <div className='content'>
+                <h1 className='title'>{title}</h1>
+                <span className='subtitle'>Shop Now</span>
+            </div>
         </div>
-    </div>
-)
+    );
+}
 
 export default Menuitem;

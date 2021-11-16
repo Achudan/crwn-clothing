@@ -6,30 +6,35 @@ const Directory = () => {
     const sections = [
         {
             "title": "Hats",
-            "img" : 'https://i.ibb.co/cvpntL1/hats.png',
-            "id": 1
+            "imageURL" : 'https://i.ibb.co/cvpntL1/hats.png',
+            "id": 1,
+            "linkURL" : 'hats'
         },
         {
             "title": "Jackets",
-            "img" : 'https://i.ibb.co/px2tCc3/jackets.png',
-            "id": 2
+            "imageURL" : 'https://i.ibb.co/px2tCc3/jackets.png',
+            "id": 2,
+            "linkURL": ''
         },
         {
             "title": "Sneakers",
-            "img" : 'https://i.ibb.co/0jqHpnp/sneakers.png',
-            "id": 3
+            "imageURL" : 'https://i.ibb.co/0jqHpnp/sneakers.png',
+            "id": 3,
+            "linkURL": ''
         },
         {
             "title": "Womens",
-            "img" : 'https://i.ibb.co/GCCdy8t/womens.png',
+            "imageURL" : 'https://i.ibb.co/GCCdy8t/womens.png',
             "size": 'large',
-            "id": 4
+            "id": 4,
+            "linkURL": ''
         },
         {
             "title": "Mens",
-            "img" : 'https://i.ibb.co/R70vBrQ/men.png',
+            "imageURL" : 'https://i.ibb.co/R70vBrQ/men.png',
             "size": 'large',
-            "id": 5
+            "id": 5,
+            "linkURL": ''
         }
     ];
 
@@ -38,8 +43,8 @@ const Directory = () => {
     return (
         <div className='directory-menu'>
             {section.map(
-                ({ title, img, size, id }) => (
-                    <Menuitem key={id} title={title} imageURL={img} size={size}/>
+                ({ id, ...sectionsOptions }) => (
+                    <Menuitem key={id} {...sectionsOptions}/>
                 )
             )}
         </div>
