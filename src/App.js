@@ -4,16 +4,33 @@ import Homepage from './Pages/Homepage/homepage.component';
 import ShopPage from './Pages/Shop/shop.component';
 import Header from './Components/Header/header.component';
 import SigninSignup from './Pages/Signin-SignupPage/signin-signup.component';
+import { useEffect, useState } from 'react';
+import { auth } from './firebase/firebase.utils';
 
 const Hats = () =>{
   return(<div>HAts</div>)
 }
 
+//help
+//https://benmcmahen.com/using-firebase-with-react-hooks/
+
 function App() {
+  const [user, setUser] = useState(null);
+  //   ()=>{
+  //   const user = auth.currentUser;
+  //   return user;
+  // });
+  useEffect(()=>{
+    // console.log("effect");
+    const unsubscribeFromAuth = auth.onAuthStateChanged((user)=>{
+      setUser(user);
+    })
+    return ()=>{unsubscribeFromAuth()}
+  },[]);
   return (
     <div className="App">
       {/* <Homepage /> */}
-      <Header />
+      <Header currentUser={user}/>
       <Routes>
         <Route  path='/' element={<Homepage/>}/>
         <Route  path='/hats' element={<Hats/>} />
