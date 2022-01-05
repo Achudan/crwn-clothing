@@ -3,12 +3,26 @@ import { useState } from "react/cjs/react.development";
 import './Sign-in.styles.scss';
 import FormInput from "../Form-Input/form-input.component";
 import CustomButton from "../Custom-Button/custom-button.component";
-import {signInWithGoogle} from '../../firebase/firebase.utils'
+import {auth, signInWithGoogle} from '../../firebase/firebase.utils'
 
 const Signin = () =>{
     const [name, setName] = useState({email:'',password:''});
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
+        const {email, password} = name;
+        try{
+            await auth.signInWithEmailAndPassword(email, password);
+        }
+        catch(error){
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            if (errorCode === 'auth/wrong-password') {
+                alert('Wrong password.');
+              } else {
+                alert(errorMessage);
+              }
+              console.log(error);
+        }
     }
     const handleChange = (e) =>{
         // console.log([e.target.name],e.target.value)
